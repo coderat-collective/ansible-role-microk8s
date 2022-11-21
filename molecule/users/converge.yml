@@ -3,7 +3,7 @@
   hosts: all
   become: true
   roles:
-    - role: racqspace.microk8s
+    - role: microk8s
       vars:
         microk8s_users:
           - ckaserer

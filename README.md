@@ -27,6 +27,7 @@ defined in `[defaults/main.yml](defaults/main.yml)`.
 * `microk8s_group_ha`: Hostgroup whose members will form HA cluster.
 * `microk8s_csr_template`: If defined, will cause a custom CSR to be used in
   generating certificates.
+* `microk8s_dns_corefile`: Configure the corefile of coredns
 
 ### Basic playbook
 

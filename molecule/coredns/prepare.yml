@@ -1,0 +1,23 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_os_family == 'Debian'
+
+    - name: Install dependencies
+      ansible.builtin.package:
+        name:
+          - python3-pip
+          - tzdata
+          - locales
+
+    - name: Install python dependencies
+      ansible.builtin.pip:
+        name:
+          - openshift
+          - kubernetes
