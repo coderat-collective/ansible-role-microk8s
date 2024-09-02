@@ -89,4 +89,31 @@
     - microk8s.plugins
     - microk8s.plugins.enable
     - microk8s.plugins.enable.dns
+
+- name: Configure DNS
+  kubernetes.core.k8s:
+    namespace: kube-system
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: coredns
+        namespace: kube-system
+        labels:
+          addonmanager.kubernetes.io/mode: EnsureExists
+          k8s-app: kube-dns
+      data:
+        Corefile: "{{ microk8s_dns_corefile }}"
+  register: microk8s_cmd_result
+  # changed_when:
+  #   - "'Addon dns is already enabled' not in microk8s_cmd_result.stdout"
+  when:
+    - microk8s_plugins.dns is defined
+    - (microk8s_plugins.dns | bool)
+    - microk8s_dns_corefile is defined
+  tags:
+    - microk8s
+    - microk8s.plugins
+    - microk8s.plugins.enable
+    - microk8s.plugins.enable.dns
 ...
