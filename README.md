@@ -11,10 +11,11 @@ Install and configure [microk8s](https://microk8s.io/) - the smallest, simplest,
 ## Requirements
 
 * Ansible >= 2.10
+* Python pkt 'python3-kubernetes'
 * Linux Distribution
     * Debian Family
-        * Ubuntu
-            * Focal (20.04)
+    * Ubuntu
+    * Nobel (24.04)
 
 ## Usage
 
