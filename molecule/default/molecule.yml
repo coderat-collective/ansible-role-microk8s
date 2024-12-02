@@ -4,10 +4,11 @@ dependency:
 driver:
   name: vagrant
   provider:
-    name: virtualbox
+    name: libvirt
+    type: libvirt
 platforms:
-  - name: instance
-    box: ubuntu/focal64
+  - name: molecule-microk8s-default
+    box: cloud-image/ubuntu-24.04
     memory: 4096
     cpus: 2
 provisioner:
@@ -15,4 +16,9 @@ provisioner:
   config_options:
     defaults:
       verbosity: 1
+  log: true
+  lint:
+    name: ansible-lint
+  scenario:
+    name: default
 ...
